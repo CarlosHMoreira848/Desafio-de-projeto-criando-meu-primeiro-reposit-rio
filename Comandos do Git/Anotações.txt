@@ -1,0 +1,114 @@
+Então, você aprendeu a usar Git. Certo?
+
+Já sabe dar git init, git commit, git add, git push, git pull, git clone, git checkout.
+
+Daí, acidentalmente…
+
+deu um commit na branch errada
+adicionou algum arquivo que não deveria ter sido adicionado
+quer simplesmente desfazer o que fez e voltar aonde estava
+E agora?
+
+Não se preocupe! Git é um sistema de controle de versões, então você é totalmente livre para fazer esse tipo de erro — é para isso que serve o Git! ??
+
+Neste artigo, você encontrará alguns comandos super úteis que eu tenho certeza que você passará a usar diariamente.
+
+Antes de prosseguir, garanta que você conhece os comandos básicos que falei ali acima. Eles são mais importantes.
+
+Git Switch
+Imagine-se na seguinte situação: (não deve ser difícil, porque você provavelmente já esteve nela :P)
+
+Começou a codar, codou e tal.. hora de dar commit e … xii.. tá na main.
+
+Como resolver: dê um
+
+git switch nome-da-branch-existente
+Se a branch ainda não existir, basta colocar um -c, assim:
+
+git switch -c nome-de-uma-nova-branch
+Pronto. Você está na branch correta agora, com todas as suas mudanças ainda fora da área de staging. Agora é só dar aquele git add, git commit e git push de lei :D
+
+O git switch é, de maneira simplificada, um git checkout que carrega as mudanças para a branch que você está indo.
+
+Git Reset (Soft/Hard)
+Imagine a situação acima, porém você já commitou. E agora?
+
+Sem problemas também! git reset ao resgate!
+
+Tem dois modos de git reset que você precisa conhecer: Soft e Hard.
+
+
+
+git reset --soft commit
+Joga você para o commit* em questão e pega todas as suas mudanças (as diferenças entre onde você está (HEAD) e o commit) e deixa elas como mudanças fora da área de staging. Ou seja, depois de dar um git reset --soft você pode dar um git switch para a branch correta.
+* Vou falar sobre o que quer dizer esse commit agorinha
+
+git reset --hard commit
+Joga você para o commit e descarta todas suas mudanças. Ou seja, você usa o hard reset quando fez algum teste que acabou não dando certo e você não quer guardar isso em lugar algum, só jogar fora mesmo.
+Ok.. mas como eu descubro qual commit quero ir?
+
+Hashs de commits
+Dê um git log. Cada commit é representado por um hash:
+
+No alt text provided for this image
+E você pode pegar apenas as primeiras letras de um hash. Por exemplo, para voltar para o terceiro commit, eu poderia usar apenas b0abe2. Caso tenha mais de um commit com o mesmo começo de hash, o git te informa e mostra quais tem o mesmo começo.
+
+Porém, é possível também utilizar commits relativos.
+
+HEAD e commits relativos
+Sabe quando eu falei até agora “onde você está”? Bem, você normalmente está na HEAD. (a menos que você esteja em um estado de detached head, mas isso é assunto para outro artigo)
+
+O git te permite ir para commits relativos usando um til ( ~ ) + um número de commits que você quer ir “no passado”.
+
+Por exemplo, fazer
+
+git reset --soft HEAD~1
+vai te jogar “um commit no passado”, e guardar todas as suas mudanças fora da área de staging.
+
+Então, respondendo a situação de:
+
+“VISH, commitei na main! E agora?”
+Faça:
+
+git reset --soft HEAD~1
+e depois
+
+git switch branch-correta
+Pronto, agora pode seguir a vida como se nada tivesse acontecido :P
+
+Mãos na massa!
+Para fixar essas coisas, que tal um exercício?
+
+Faça o seguinte:
+
+Crie um novo repositório com um arquivo simples de markdown (tipo um README, por exemplo)
+Escreva alguma coisa no seu arquivo markdown, adicione, commite na main mesmo.
+Escreva mais alguma outra coisa. Dê switch para uma nova branch, adicione, commite nessa nova branch.
+Volte para a branch principal. Escreva outra coisa, adicione, commite. Dê um soft reset para voltar para o commit anterior (o de setup), depois dê switch para a branch que você já tinha criado, adicione, commite.
+Volte para a branch principal. Escreva alguma coisa bem feia :P. Adicione, commite. Escreva outra coisa feia, adicione, commite. Dê um hard reset nos últimos dois commits.
+Se tiver alguma dúvida em executar esses passos acima, deixe um comentário aí :D
+
+Bônus: atalhos do Oh My Zsh! (cheatsheet)
+Se você está usando o Oh My Zsh! como terminal, você precisa conhecer esses atalhos a seguir: (se não está usando o Oh My Zsh!… por quê??? ):
+
+Antes do símbolo de igualdade é o atalho, depois é o comando que ele representa.
+
+ga = git add
+gco = git checkout
+gcb = git checkout -b
+gcm = git checkout $(branch principal) (sim, ele vai pra main se for main ou master se for master)
+gst = git status
+glog = git log — oneline — decorate — graph (coloca cada commit com uma linha apenas e desenha uma arvorezinha lindona)
+gcam = git commit --am
+gl = git pull
+gp = git push
+gpsup = git push -u origin $(nome da branch atual) (sim, ele pega o nome da branch que você está e coloca uma branch na origin como sendo a upstream da sua branch atual. Lindo, não?)
+gsw = git switch
+gswc = git switch -c
+Caso você se esqueça de algum atalho, você pode ver todos fazendo
+
+alias
+Ou seja, você pode usar o bom e velho pipe pro grep para pesquisar. Por exemplo:
+
+alias | grep “commit”
+Vai te mostrar todos os atalhos relacionados ao commit.

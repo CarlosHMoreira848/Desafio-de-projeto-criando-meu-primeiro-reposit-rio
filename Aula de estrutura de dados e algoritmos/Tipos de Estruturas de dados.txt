@@ -1,0 +1,21 @@
+Estrutura de dados e algoritmos
+
+Listas - As listas se diferenciam dos arrays por possuirem tamanho ajustável, equanto os arrays possuem tamanho fixo, ou seja, após declarado o array não modifica seu tamanho.
+Lista Ligada - Possuem nós que são correspodentes aos índeces de um array com a diferença de que os nós conhecem os valores armazenados e também conhecem seu elemento posterior.
+Lista duplamente ligada - Os nós conhecem seus valores além de conhecerem o elemento anterior e o elemento posterior a ele.
+
+Registro - Armazena dados de tipos diferentes. Para acesar seus valores basta pesquisar o nome do registro + "." + índice do valor.
+
+Pilha - Armazena dados e permite o acesso somente à um íte, por vez.
+Pilha UEPS - Último que entra e primeiro que sai. O último elemento adcionado é o primeiro a ser retirado.
+Pilha PEPS - Primeiro que entra e primeiro que sai. O primeiro elemento adcionado é o primeiro elemento a ser retirado.
+
+Fila - Armazena dados. Os elementos adcionados à direita são os últimos elementos e os elementos à esquerda são os primeiros. O elemento que primeiro é acessado é o da esquerda e é permitido apenas adcionar elementos á esquerda.
+
+Árvore - Armazena dados de forma hierárquica em raís e folhas. A raís é o elemento do meio da árvore e as folhas são as ramificações que surgem dessa raíz à direita e à esquerda, facilitando, assim, a busca por elementos.
+
+Tabela Hash - Armazena valores em uma tabela e realiza uma busca rápida através de uma verificação lógica. Para inserir valores na tabela utilizamos a função Hashing. Quanto mais precisa for a função Hashing melhor será á organização da tabela.
+
+Grafos - São estruturas que permitem programar a relação entre objetos. Os objetos são os vértices e os relacionamentos são as arestas.'
+
+25/12/2021
